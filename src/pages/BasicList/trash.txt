@@ -1,0 +1,6 @@
+git 操作
+
+公司：
+git log --oneline  查看更改日志
+git log --graph   查看历史
+家：
