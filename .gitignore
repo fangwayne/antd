@@ -25,6 +25,7 @@ pnpm-lock.yaml
 # visual studio code
 .history
 *.log
+!calendar.log
 functions/*
 .temp/**
 
