@@ -10,14 +10,14 @@ import { useRequest } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 import ColumnBuilder from './builder/ColumnBuilder';
 import ActionBuilder from './builder/ActionBuilder';
-import  Modal  from './component/Modal'
+import Modal from './component/Modal';
 import styles from './index.less';
 
 const Index = () => {
   const [page, setPage] = useState(1);
   const [per_page, setPerPage] = useState(10);
-  const [modalVisible, setModalVisible] = useState(false)
-  const [modalUri, setModalUri] = useState('')
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalUri, setModalUri] = useState('');
   // 这一句话的意思是：对 useRequest 函数传入泛型，泛型是一个对象，其中的 data 变量的类型是 BasicListApi.Data 这个 interface
   // 所以，init.data. 后面就能点出 data 的属性来，如 dataSource, meta, latout, page。都是在BasicListApi.Data 接口中定义好的。
   const init = useRequest<{ data: BasicListApi.Data }>(
@@ -41,7 +41,6 @@ const Index = () => {
   useEffect(() => {
     init.run();
   }, [page, per_page]);
-
 
   const handlePageChange = (_page: any, _per_page: any) => {
     setPage(_page);
@@ -74,20 +73,20 @@ const Index = () => {
   return (
     <PageContainer>
       <Space className={styles.tableToolbar}>
-        <Button 
-          type={"primary"}
-          onClick={()=>{
-            setModalUri('https://public-api-v2.aspirantzhang.com/api/admins/add?X-API-KEY=antd')
-            setModalVisible(true)
+        <Button
+          type={'primary'}
+          onClick={() => {
+            setModalUri('https://public-api-v2.aspirantzhang.com/api/admins/add?X-API-KEY=antd');
+            setModalVisible(true);
           }}
         >
           添加用户
         </Button>
-        <Button 
-          type={"primary"}
-          onClick={()=>{
-            setModalUri('https://public-api-v2.aspirantzhang.com/api/admins/206?X-API-KEY=antd')
-            setModalVisible(true)
+        <Button
+          type={'primary'}
+          onClick={() => {
+            setModalUri('https://public-api-v2.aspirantzhang.com/api/admins/206?X-API-KEY=antd');
+            setModalVisible(true);
           }}
         >
           编辑用户
@@ -101,15 +100,17 @@ const Index = () => {
           columns={ColumnBuilder(init?.data?.layout?.tableColumn)}
           pagination={false}
           loading={init.loading}
-          rowKey='id'
+          rowKey="id"
         />
         {afterTableLayout()}
       </Card>
       {batchLayout()}
-      <Modal 
-        modalVisible={modalVisible} 
-        handleModal={()=>{setModalVisible(false)}}
-        modalUri = {modalUri}
+      <Modal
+        modalVisible={modalVisible}
+        handleModal={() => {
+          setModalVisible(false);
+        }}
+        modalUri={modalUri}
       />
     </PageContainer>
   );

@@ -6,7 +6,11 @@ const ActionBuilder = (
 ) => {
   return (actions || []).map((action) => {
     if (action.component == 'button') {
-      return <Button key={action.text} type={action.type as ButtonType}>{action.text}</Button>;
+      return (
+        <Button key={action.text} type={action.type as ButtonType}>
+          {action.text}
+        </Button>
+      );
     } else {
       return null;
     }
